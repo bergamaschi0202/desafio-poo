@@ -1,35 +1,8 @@
 package br.com.arthur.desafiopoo.Entity;
 
-public class Curso {
+public class Curso extends Conteudo{
 
-    private String titulo;
-    private String descricao;
     private int cargahoraria;
-
-    // Geters e Seters
-
-    public String getTitulo() {
-        return titulo;
-    }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getCargahoraria() {
-        return cargahoraria;
-    }
-    public void setCargahoraria(int cargahoraria) {
-        this.cargahoraria = cargahoraria;
-    }
-
-    //===========================================================
 
     public Curso(){
 
@@ -38,9 +11,26 @@ public class Curso {
     @Override
     public String toString() {
         return "Curso{" +
-                "titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
+                "titulo='" + getTitulo() + '\'' +
+                ", descricao='" + getDescricao() + '\'' +
                 ", cargahoraria=" + cargahoraria +
                 '}';
     }
+
+    @Override
+    public double calcularXp() {
+        return XP_PADRAO * cargahoraria;
+    }
+
+    //==============================================================
+    // Geters e Seters
+
+    public int getCargahoraria() {
+        return cargahoraria;
+    }
+    public void setCargahoraria(int cargahoraria) {
+        this.cargahoraria = cargahoraria;
+    }
+
+
 }
