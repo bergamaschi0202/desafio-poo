@@ -1,8 +1,6 @@
 package br.com.arthur.desafiopoo.Entity;
 
-import java.util.LinkedHashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Dev {
 
@@ -12,11 +10,26 @@ public class Dev {
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
-    public void inscreverBootcamp(Bootcamp bootcamp){}
+    public void inscreverBootcamp(Bootcamp bootcamp){
+        this.conteudosInscritos.addAll(bootcamp.getConteudos());
+        bootcamp.increverDev(this);
+    }
 
-    public void progredir(){}
+    public void progredir(){
+        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
+        if(conteudo.isPresent()){
+            Conteudo c = conteudo.get();
 
-    public void calcularTotalXp(){}
+            this.conteudosConcluidos.add(c);
+            this.conteudosInscritos.remove(c);
+        } else{
+            throw new NoSuchElementException("Nenhum conteúdo para progredir");
+        }
+    }
+
+    public double calcularTotalXp(){
+        return this.conteudosConcluidos.stream().mapToDouble(Conteudo::calcularXp).sum();
+    }
 
 
     @Override

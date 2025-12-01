@@ -15,6 +15,10 @@ public class Bootcamp {
     private Set<Dev> devsInscritos = new HashSet<>();
     private Set<Conteudo> conteudos = new LinkedHashSet<>();
 
+    public void increverDev(Dev dev){
+        this.devsInscritos.add(dev);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
